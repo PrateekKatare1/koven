@@ -41,7 +41,7 @@ Not a template. Your actual story. In under 5 minutes.
 - Tailwind CSS
 - Claude Sonnet 4 (case study generation)
 - Supabase (auth + database)
-- Stripe (payments)
+- Lemon Squeezy (payments)
 - Vercel (deployment)
 
 ---
