@@ -1,7 +1,5 @@
 'use client'
 
-import { PRICES } from '@/lib/paddle'
-
 interface BuyButtonProps {
   plan: 'earlyBird' | 'builderPack'
   label: string
@@ -9,24 +7,19 @@ interface BuyButtonProps {
 }
 
 export function BuyButton({ plan, label, className }: BuyButtonProps) {
-  const handleClick = () => {
-    const priceId = PRICES[plan]
-
-    // @ts-ignore
-    if (window.Paddle) {
-      // @ts-ignore
-      window.Paddle.Checkout.open({
-        items: [{ priceId, quantity: 1 }],
-      })
-    }
+  const urls = {
+    earlyBird: process.env.NEXT_PUBLIC_GUMROAD_EARLY_BIRD_URL!,
+    builderPack: process.env.NEXT_PUBLIC_GUMROAD_BUILDER_PACK_URL!,
   }
 
   return (
-    <button
-      onClick={handleClick}
+    <a
+      href={urls[plan]}
+      target="_blank"
+      rel="noopener noreferrer"
       className={className}
     >
       {label}
-    </button>
+    </a>
   )
 }
