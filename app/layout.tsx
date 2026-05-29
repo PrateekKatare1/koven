@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,10 +11,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Koven — Turn your GitHub repos into case studies",
-  description: "Koven reads your commits, build-in-public posts, and live product — then writes your case study. Not a template. Your actual story. In under 5 minutes.",
-};
+export const metadata = {
+  title: 'Koven — Turn your GitHub into a case study',
+  description: 'Paste your GitHub URL, X handle, and live product link. Get a designed case study in under 5 minutes. Not a template. Your actual story.',
+  icons: {
+    icon: '/icon.svg',
+  },
+}
 
 export default function RootLayout({
   children,

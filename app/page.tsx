@@ -704,9 +704,10 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="border-t border-white/5 px-4 md:px-6 py-8 mt-16">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center flex-wrap gap-4">
-          <span className="text-gray-700 text-sm">© 2026 Koven</span>
-          <span className="text-gray-700 text-sm">hi@getkoven.io</span>
+          <span className="text-gray-700 text-sm">© 2026 Koven · trykoven.com</span>
+          <a href="mailto:hi@trykoven.com" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">hi@trykoven.com</a>
           <div className="flex gap-6">
+            <a href="https://github.com/PrateekKatare1/koven" target="_blank" rel="noopener noreferrer" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">GitHub</a>
             <a href="/terms" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Terms</a>
             <a href="/privacy" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Privacy</a>
             <a href="/refund" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Refund</a>
