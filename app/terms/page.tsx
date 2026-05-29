@@ -8,7 +8,7 @@ export default function TermsPage() {
       <p style={{color:'#444',lineHeight:'1.7'}}>Koven ("we", "us") provides a web-based tool that generates case study pages from your GitHub repositories, X posts, and product URLs. Access is provided upon successful payment.</p>
 
       <h2 style={{fontSize:'18px',fontWeight:'600',marginTop:'32px'}}>2. Payment</h2>
-      <p style={{color:'#444',lineHeight:'1.7'}}>All payments are one-time and processed securely via Paddle. No subscription or recurring charges. Prices are in USD.</p>
+      <p style={{color:'#444',lineHeight:'1.7'}}>All payments are one-time and processed securely via Gumroad. No subscription or recurring charges. Prices are in USD.</p>
 
       <h2 style={{fontSize:'18px',fontWeight:'600',marginTop:'32px'}}>3. Refunds</h2>
       <p style={{color:'#444',lineHeight:'1.7'}}>Refunds are available within 48 hours of purchase. Email hi@getkoven.io with your order details.</p>

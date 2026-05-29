@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <p style={{color:'#444',lineHeight:'1.7'}}>Your submitted data is used solely to generate your case study. We do not sell, share, or use your data for advertising.</p>
 
       <h2 style={{fontSize:'18px',fontWeight:'600',marginTop:'32px'}}>Third parties</h2>
-      <p style={{color:'#444',lineHeight:'1.7'}}>We use Paddle for payment processing (they handle payment data — we never see your card details), Supabase for database, and Vercel for hosting.</p>
+      <p style={{color:'#444',lineHeight:'1.7'}}>We use Gumroad for payment processing (they handle payment data — we never see your card details), Supabase for database, and Vercel for hosting.</p>
 
       <h2 style={{fontSize:'18px',fontWeight:'600',marginTop:'32px'}}>Data retention</h2>
       <p style={{color:'#444',lineHeight:'1.7'}}>Your generated case studies are stored as long as your account is active. You can request deletion at any time by emailing hi@getkoven.io.</p>

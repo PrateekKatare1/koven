@@ -4,7 +4,9 @@
       "Bash(git add *)",
       "Bash(git push *)",
       "Bash(npm uninstall *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(del \"c:\\\\Users\\\\HP\\\\Desktop\\\\koven\\\\app\\\\\\(marketing\\)\\\\page.tsx\")",
+      "Bash(npm run *)"
     ]
   }
 }
