@@ -90,10 +90,10 @@ export default function Home() {
         </h1>
 
         <p className="mt-8 max-w-2xl mx-auto text-gray-400 text-xl leading-relaxed">
-          Koven reads your GitHub commits, build-in-public posts, and live product —
-          then writes your case study.
-          Not a template.
-          Your actual story. In under 5 minutes.
+          Paste your GitHub URL and build posts.
+          Koven writes your case study in 5 minutes.
+          Not a template — built from what you
+          actually did.
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-4">
