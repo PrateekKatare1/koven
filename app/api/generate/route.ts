@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { parseGitHubRepo } from '@/lib/github'
 import { scrapeProductUrl } from '@/lib/scraper'
+import { generateCaseStudy } from '@/lib/claude'
 import { KovenInput, UnifiedData } from '@/types'
 
 export async function POST(req: NextRequest) {
@@ -26,6 +27,7 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Step 1: Collect all data in parallel
     const [github, og] = await Promise.all([
       parseGitHubRepo(githubUrl).catch(() => null),
       scrapeProductUrl(productUrl).catch(() => null),
@@ -44,11 +46,18 @@ export async function POST(req: NextRequest) {
       collectedAt: new Date().toISOString(),
     }
 
+    // Step 2: Generate case study with Claude
+    const caseStudy = await generateCaseStudy(unified)
+
+    // Step 3: Return everything
     return NextResponse.json({
       success: true,
-      data: unified,
+      caseStudy,
+      rawData: unified,
     })
+
   } catch (error: any) {
+    console.error('Generation error:', error)
     return NextResponse.json(
       { error: error.message || 'Generation failed' },
       { status: 500 }
