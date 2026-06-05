@@ -1,20 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-
-interface CaseStudy {
-  title: string
-  oneLiner: string
-  problem: string
-  solution: string
-  buildStory: string
-  technicalDecisions: string[]
-  results: string
-  techStack: string[]
-  quote: string
-  timeline: string
-  builderHandle: string
-}
+import type { CaseStudy } from '@/lib/claude'
 
 const LOADING_STATES = [
   'Reading your commits...',
@@ -54,7 +41,7 @@ export default function DashboardPage() {
     let i = 0
     setLoadingText(LOADING_STATES[0])
     const interval = setInterval(() => {
-      i = (i + 1) % LOADING_STATES.length
+      i = Math.min(i + 1, LOADING_STATES.length - 1)
       setLoadingText(LOADING_STATES[i])
     }, 2000)
 

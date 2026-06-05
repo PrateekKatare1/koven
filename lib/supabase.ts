@@ -19,7 +19,6 @@ export function generateSlug(
   projectName: string
 ): string {
   const cleanHandle = handle
-    .replace('@', '')
     .toLowerCase()
     .replace(/[^a-z0-9]/g, '')
 
@@ -30,9 +29,7 @@ export function generateSlug(
     .replace(/^-|-$/g, '')
 
   const base = `${cleanHandle}-${cleanProject}`
-  const random = Math.random()
-    .toString(36)
-    .slice(2, 6)
+  const random = crypto.randomUUID().replace(/-/g, '').slice(0, 6)
 
   return `${base}-${random}`
 }

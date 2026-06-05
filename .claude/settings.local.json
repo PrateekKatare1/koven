@@ -6,7 +6,8 @@
       "Bash(npm uninstall *)",
       "Bash(git commit *)",
       "Bash(del \"c:\\\\Users\\\\HP\\\\Desktop\\\\koven\\\\app\\\\\\(marketing\\)\\\\page.tsx\")",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(node -e ' *)"
     ]
   }
 }

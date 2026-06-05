@@ -67,6 +67,7 @@ export async function POST(req: NextRequest) {
         results: caseStudy.results,
         tech_stack: caseStudy.techStack,
         quote: caseStudy.quote,
+        timeline: caseStudy.timeline,
         builder_handle: caseStudy.builderHandle,
         github_url: githubUrl,
         product_url: productUrl,

@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { supabaseAdmin } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import { CopyButton } from './CopyButton'
 
@@ -10,7 +10,7 @@ export async function generateMetadata({
   params,
 }: PageProps) {
   const { slug } = await params
-  const { data } = await supabase
+  const { data } = await supabaseAdmin
     .from('case_studies')
     .select('title, one_liner')
     .eq('slug', slug)
@@ -28,7 +28,7 @@ export default async function CaseStudyPage({
   params,
 }: PageProps) {
   const { slug } = await params
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin
     .from('case_studies')
     .select('*')
     .eq('slug', slug)
@@ -151,7 +151,7 @@ export default async function CaseStudyPage({
               {(data.technical_decisions || []).map(
                 (decision: string, i: number) => (
                   <div key={i} className="flex gap-3 text-sm">
-                    <span className="text-amber-500/60 mt-0.5 flex-shrink-0">{'→'}</span>
+                    <span className="text-amber-500/60 mt-0.5 shrink-0">{'→'}</span>
                     <span className="text-gray-400 leading-relaxed">{decision}</span>
                   </div>
                 )
