@@ -1,0 +1,54 @@
+{
+  "success": true,
+  "caseStudy": {
+    "title": "Linear",
+    "oneLiner": "Purpose-built project management tool for software teams who need speed over features.",
+    "problem": "Project management tools like Jira and Asana are too slow and bloated for modern software teams who need to move fast and stay focused. Notion and Jira weren't built for speed — they're loaded with features that get in the way of actually shipping code. Every click feels heavy, syncing is slow, and simple tasks take way too long.",
+    "solution": "Built a project management system obsessed with performance — sub-100ms response times, instant sync, and keyboard shortcuts for everything. Created a clean TypeScript SDK and API that lets teams manage issues, cycles, and roadmaps without the bloat. Every feature had to earn its place through actual need, not feature creep.",
+    "buildStory": "Started building because existing tools were painfully slow for software teams. Obsessed over making everything fast — keyboard shortcuts, instant sync, sub-100ms response times became non-negotiables. Shipped cycles, priorities, and roadmaps as core features, but made every single feature justify its existence. The hardest part was saying no to feature requests that would slow things down. Built the whole thing in TypeScript with a focus on developer experience.",
+    "technicalDecisions": [
+      "Chose TypeScript for the entire stack to maintain type safety across API and SDK",
+      "Built custom sync engine for instant updates instead of using off-the-shelf solutions",
+      "Focused on sub-100ms response times as a core constraint, not an optimization",
+      "Cut complex project templates and advanced reporting to keep the core experience fast"
+    ],
+    "results": "1,421 stars on GitHub with 716 commits over 7+ years of active development. The API and SDK have become the foundation for Linear's product development system used by thousands of software teams.",
+    "techStack": ["TypeScript", "JavaScript", "GraphQL API"],
+    "quote": "Every feature had to earn its place — we obsessed over keyboard shortcuts, instant sync, and sub-100ms response times.",
+    "timeline": "7+ years of active development",
+    "builderHandle": "@linear"
+  },
+  "rawData": {
+    "input": {
+      "githubUrl": "https://github.com/linear/linear",
+      "xHandle": "linear",
+      "buildPosts": "Building Linear because project management tools were too slow and bloated. Notion and Jira were not built for speed. We obsessed over keyboard shortcuts, instant sync, and sub-100ms response times. Shipped cycles, priorities, and roadmaps. Every feature had to earn its place.",
+      "productUrl": "https://linear.app",
+      "problemStatement": "Project management tools like Jira and Asana are too slow and bloated for modern software teams who need to move fast and stay focused"
+    },
+    "github": {
+      "name": "linear",
+      "description": "Tools, SDKs and plugins for Linear",
+      "readme": "...",
+      "primaryLanguage": "TypeScript",
+      "languages": ["TypeScript", "JavaScript"],
+      "stars": 1421,
+      "forks": 256,
+      "topics": [],
+      "commitCount": 716,
+      "daysActive": 2608,
+      "lastPushed": "2026-06-02T18:30:06Z",
+      "repoUrl": "https://github.com/linear/linear",
+      "homepageUrl": null,
+      "createdAt": "2019-04-11T22:54:14Z",
+      "owner": "linear"
+    },
+    "og": {
+      "title": "Linear – The system for product development",
+      "description": "The product development system for teams and agents",
+      "image": null,
+      "url": "https://linear.app"
+    },
+    "collectedAt": "2026-06-02T19:23:49.211Z"
+  }
+}
