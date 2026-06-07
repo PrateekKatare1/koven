@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import type { CaseStudy } from '@/lib/claude'
 import { EmailGate } from '@/components/ui/email-gate'
@@ -15,6 +15,7 @@ const LOADING_STATES = [
 
 function DashboardContent() {
   const searchParams = useSearchParams()
+  const resultRef = useRef<HTMLDivElement>(null)
 
   const [sessionChecked, setSessionChecked] = useState(false)
   const [sessionVerified, setSessionVerified] = useState(false)
@@ -95,6 +96,9 @@ function DashboardContent() {
         slug: data.slug,
         caseStudy: data.caseStudy,
       })
+      setTimeout(() => {
+        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 100)
     } catch (err: any) {
       setError(err.message || 'Something went wrong.')
     } finally {
@@ -275,7 +279,7 @@ function DashboardContent() {
 
           {/* Result */}
           {result && (
-            <div className="mt-16 border border-white/10 rounded-2xl overflow-hidden">
+            <div ref={resultRef} className="mt-16 border border-white/10 rounded-2xl overflow-hidden">
 
               {/* Success bar */}
               <div className="bg-green-950/30 border-b border-green-900/30 px-6 py-4 flex items-center justify-between">
