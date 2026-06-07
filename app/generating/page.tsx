@@ -86,16 +86,29 @@ export default function GeneratingPage() {
           }, 800)
         } else {
           setError(
-            data.error || 'Something went wrong.'
+            data.error?.includes('private')
+              ? 'This repo is private. Make it public and try again.'
+              : data.error?.includes('not found')
+              ? 'Could not find that GitHub repo. Check the URL.'
+              : data.error || 'Generation failed. Click try again.'
           )
         }
       })
-      .catch(() => {
+      .catch((err) => {
         clearInterval(progressTimer)
         clearInterval(stepTimer)
-        setError(
-          'Generation failed. Please try again.'
-        )
+        const msg = (err?.message || '').toLowerCase()
+
+        if (msg.includes('private'))
+          setError('This repo is private. Make it public first, then try again.')
+        else if (msg.includes('not found') || msg.includes('404'))
+          setError('Could not find that GitHub repo. Check the URL and try again.')
+        else if (msg.includes('timeout'))
+          setError('Claude is taking longer than usual. Click try again — it almost always works second time.')
+        else if (msg.includes('session'))
+          setError('Could not verify your payment. Email hi@trykoven.com with your receipt.')
+        else
+          setError('Something went wrong. Click try again — if it keeps failing, email hi@trykoven.com')
       })
 
     return () => {
