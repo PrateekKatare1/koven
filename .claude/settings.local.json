@@ -18,7 +18,12 @@
       "Bash(node -e \"require\\('playwright'\\)\")",
       "Bash(npx playwright *)",
       "Bash(node -e \"require\\('puppeteer'\\)\")",
-      "Bash(curl -s http://localhost:3000)"
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(xargs grep -l \"dashboard\\\\|/dashboard\")",
+      "Bash(grep -r \"\\\\/dashboard\\\\|dashboard\" . --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.jsx\" --include=\"*.json\" --exclude-dir=node_modules --exclude-dir=.next -i)",
+      "Bash(xargs grep -l \"dashboard\")",
+      "Bash(xargs grep -i \"dashboard\\\\|/\\(app\\)\")",
+      "Bash(xargs grep -i \"dashboard\")"
     ]
   }
 }
