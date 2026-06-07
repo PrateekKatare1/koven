@@ -652,12 +652,17 @@ export default function Home() {
         <p className="text-gray-500 text-sm mb-6">
           Early access pricing. Get in before it goes up.
         </p>
-        <a
-          href="mailto:prateekkatare1@gmail.com"
-          className="text-amber-500/70 hover:text-amber-400 transition-colors underline underline-offset-4 text-sm"
-        >
-          Questions? Email prateekkatare1@gmail.com →
-        </a>
+        <p className="text-gray-600 text-sm mt-4">
+          Questions? DM{' '}
+          <a
+            href="https://x.com/PrateekKataree"
+            target="_blank"
+            className="text-amber-500/70 hover:text-amber-400 transition-colors"
+          >
+            @PrateekKataree
+          </a>
+          {' '}on X.
+        </p>
       </div>
 
       {/* FAQ */}
@@ -678,7 +683,7 @@ export default function Home() {
             },
             {
               q: "What if I don't like what it generates?",
-              a: "Email within 48 hours for a full refund. No questions asked. We're not interested in keeping your $9 if Koven didn't deliver."
+              a: "Full refund within 48 hours. No questions asked. DM @PrateekKataree on X with your order ID and we'll sort it immediately."
             }
           ].map((faq, idx) => (
             <div
@@ -765,7 +770,7 @@ export default function Home() {
       <footer className="border-t border-white/5 px-4 md:px-6 py-8 mt-16">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center flex-wrap gap-4">
           <span className="text-gray-700 text-sm">© 2026 Koven · trykoven.com</span>
-          <a href="mailto:prateekkatare1@gmail.com" className="text-amber-500/70 hover:text-amber-400 transition-colors text-sm">prateekkatare1@gmail.com</a>
+          <a href="https://x.com/PrateekKataree" target="_blank" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">@PrateekKataree</a>
           <div className="flex gap-6">
             <a href="/terms" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Terms</a>
             <a href="/privacy" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Privacy</a>
