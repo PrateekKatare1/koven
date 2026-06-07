@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 const styles = `
   @keyframes float-up {
     0% { opacity: 0; transform: translateY(20px); }
@@ -50,6 +52,7 @@ const styles = `
 export default function Home() {
   const earlyBirdUrl = process.env.NEXT_PUBLIC_POLAR_EARLY_BIRD_URL || '#'
   const builderPackUrl = process.env.NEXT_PUBLIC_POLAR_BUILDER_PACK_URL || '#'
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
     <main style={{ backgroundColor: '#0f0f0f', minHeight: '100vh', color: '#fff' }}>
@@ -507,7 +510,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="bg-amber-500 hover:bg-amber-400 text-black font-bold px-8 py-3 rounded-xl transition-all"
             >
-              Get mine for $7 →
+              Get mine for $9 →
             </a>
           </div>
         </div>
@@ -575,7 +578,7 @@ export default function Home() {
           <div className="border border-amber-500/40 bg-amber-950/10 rounded-2xl p-8">
             <p className="text-amber-500 text-xs tracking-widest uppercase font-medium mb-4">EARLY BIRD</p>
             <div className="flex items-baseline gap-2">
-              <span className="text-white text-6xl font-bold">$7</span>
+              <span className="text-white text-6xl font-bold">$9</span>
               <span className="text-gray-600 text-sm">USD</span>
             </div>
             <p className="text-gray-600 text-sm mt-1 mb-6">One-time payment. No subscription.</p>
@@ -650,37 +653,59 @@ export default function Home() {
           Early access pricing. Get in before it goes up.
         </p>
         <a
-          href="mailto:hi@trykoven.com"
-          className="text-gray-600 text-sm
-            hover:text-gray-400 transition-colors
-            underline underline-offset-4"
+          href="mailto:prateekkatare1@gmail.com"
+          className="text-amber-500/70 hover:text-amber-400 transition-colors underline underline-offset-4 text-sm"
         >
-          Questions? Email hi@trykoven.com →
+          Questions? Email prateekkatare1@gmail.com →
         </a>
       </div>
 
       {/* FAQ */}
-      <section className="mt-32 px-4 md:px-6 max-w-2xl mx-auto">
-        <h2 className="text-white text-4xl font-bold text-center mb-16">Questions.</h2>
+      <section className="max-w-2xl mx-auto px-6 mt-32">
+        <h2 className="text-white text-4xl font-bold text-center mb-16">
+          Questions.
+        </h2>
 
-        <div className="space-y-8">
+        <div className="space-y-3">
           {[
             {
-              q: 'Will it sound like generic AI output?',
-              a: "No. Koven doesn't start with a template. It starts with YOUR commits, YOUR build posts, and YOUR actual product. The output reads like you wrote it on your best day — because it's built entirely from what you actually did. If you've documented your build honestly, the output will be honest.",
+              q: "Will it sound like generic AI output?",
+              a: "No. Koven doesn't start with a template. It starts with YOUR commits, YOUR build posts, and YOUR actual product. The output reads like you wrote it — because it's built entirely from what you actually did."
             },
             {
-              q: 'What if my repo is small or incomplete?',
-              a: "It still works. Koven pulls from every signal available. Your commits say more than you think. Even 'fix bug' repeated 40 times tells a story of someone who shipped through problems. The more you've built in public, the richer the output.",
+              q: "What if my repo is small or incomplete?",
+              a: "It still works. Koven pulls from every signal available. Your commits say more than you think. The more you've built in public, the richer the output."
             },
             {
               q: "What if I don't like what it generates?",
-              a: "Email hi@getkoven.io within 48 hours. Full refund. No questions asked. We're building this for builders — we're not interested in keeping your $7 if Koven didn't deliver. But we're betting it will.",
-            },
-          ].map(({ q, a }) => (
-            <div key={q} className="border-b border-white/5 pb-8">
-              <p className="text-white font-semibold text-lg mb-3">{q}</p>
-              <p className="text-gray-500 leading-relaxed">{a}</p>
+              a: "Email within 48 hours for a full refund. No questions asked. We're not interested in keeping your $9 if Koven didn't deliver."
+            }
+          ].map((faq, idx) => (
+            <div
+              key={idx}
+              className="border border-white/8 rounded-xl overflow-hidden"
+            >
+              <button
+                onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/2 transition-colors"
+              >
+                <span className="text-white font-medium text-sm md:text-base pr-4">
+                  {faq.q}
+                </span>
+                <span className={`text-gray-500 text-xl shrink-0 transition-transform duration-200 ${openFaq === idx ? 'rotate-45' : ''}`}>
+                  +
+                </span>
+              </button>
+
+              {openFaq === idx && (
+                <div className="px-6 pb-6">
+                  <div className="border-t border-white/5 pt-4">
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      {faq.a}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -704,11 +729,11 @@ export default function Home() {
           rel="noopener noreferrer"
           className="mt-12 inline-block animate-glow bg-amber-500 hover:bg-amber-400 text-black font-bold px-12 py-5 rounded-xl text-lg transition-all"
         >
-          Get my case study — $7
+          Get my case study — $9
         </a>
 
-        <p className="mt-4 text-gray-600 text-sm">
-          One-time payment. Under 5 minutes. 48-hour refund if it&apos;s not what you expected.
+        <p className="text-gray-600 text-sm mt-4">
+          One-time payment. No subscription.
         </p>
       </section>
 
@@ -740,9 +765,8 @@ export default function Home() {
       <footer className="border-t border-white/5 px-4 md:px-6 py-8 mt-16">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center flex-wrap gap-4">
           <span className="text-gray-700 text-sm">© 2026 Koven · trykoven.com</span>
-          <a href="mailto:hi@trykoven.com" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">hi@trykoven.com</a>
+          <a href="mailto:prateekkatare1@gmail.com" className="text-amber-500/70 hover:text-amber-400 transition-colors text-sm">prateekkatare1@gmail.com</a>
           <div className="flex gap-6">
-            <a href="https://github.com/PrateekKatare1/koven" target="_blank" rel="noopener noreferrer" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">GitHub</a>
             <a href="/terms" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Terms</a>
             <a href="/privacy" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Privacy</a>
             <a href="/refund" className="text-gray-700 text-sm hover:text-gray-400 transition-colors">Refund</a>
