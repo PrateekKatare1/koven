@@ -48,8 +48,8 @@ const styles = `
 `
 
 export default function Home() {
-  const earlyBirdUrl = process.env.NEXT_PUBLIC_GUMROAD_EARLY_BIRD_URL || '#'
-  const builderPackUrl = process.env.NEXT_PUBLIC_GUMROAD_BUILDER_PACK_URL || '#'
+  const earlyBirdUrl = process.env.NEXT_PUBLIC_POLAR_EARLY_BIRD_URL || '#'
+  const builderPackUrl = process.env.NEXT_PUBLIC_POLAR_BUILDER_PACK_URL || '#'
 
   return (
     <main style={{ backgroundColor: '#0f0f0f', minHeight: '100vh', color: '#fff' }}>

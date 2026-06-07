@@ -8,8 +8,8 @@ interface BuyButtonProps {
 
 export function BuyButton({ plan, label, className }: BuyButtonProps) {
   const urls = {
-    earlyBird: process.env.NEXT_PUBLIC_GUMROAD_EARLY_BIRD_URL!,
-    builderPack: process.env.NEXT_PUBLIC_GUMROAD_BUILDER_PACK_URL!,
+    earlyBird: process.env.NEXT_PUBLIC_POLAR_EARLY_BIRD_URL!,
+    builderPack: process.env.NEXT_PUBLIC_POLAR_BUILDER_PACK_URL!,
   }
 
   return (
