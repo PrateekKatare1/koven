@@ -5,12 +5,37 @@ import { useSearchParams } from 'next/navigation'
 import type { CaseStudy } from '@/lib/claude'
 import { EmailGate } from '@/components/ui/email-gate'
 
-const LOADING_STATES = [
-  'Reading your commits...',
-  'Scraping your product...',
-  'Pulling your build posts...',
-  'Writing your story...',
-  'Almost there...',
+const LOADING_STEPS = [
+  {
+    id: 1,
+    label: "Reading your commits",
+    detail: "Pulling your GitHub history and README",
+    icon: "{ }",
+  },
+  {
+    id: 2,
+    label: "Scraping your product",
+    detail: "Extracting title and description",
+    icon: "↗",
+  },
+  {
+    id: 3,
+    label: "Pulling your build story",
+    detail: "Reading your build-in-public posts",
+    icon: "𝕏",
+  },
+  {
+    id: 4,
+    label: "Claude is writing",
+    detail: "Generating your case study",
+    icon: "✦",
+  },
+  {
+    id: 5,
+    label: "Saving your story",
+    detail: "Creating your public page",
+    icon: "↓",
+  },
 ]
 
 function DashboardContent() {
@@ -29,7 +54,9 @@ function DashboardContent() {
   })
 
   const [loading, setLoading] = useState(false)
-  const [loadingText, setLoadingText] = useState('')
+  const [currentStep, setCurrentStep] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [result, setResult] = useState<{
     slug: string
     caseStudy: CaseStudy
@@ -67,12 +94,25 @@ function DashboardContent() {
     setError(null)
     setResult(null)
 
-    let i = 0
-    setLoadingText(LOADING_STATES[0])
-    const interval = setInterval(() => {
-      i = Math.min(i + 1, LOADING_STATES.length - 1)
-      setLoadingText(LOADING_STATES[i])
-    }, 2000)
+    let stepIdx = 0
+    let elapsed = 0
+    const TOTAL_MS = 19000
+
+    setCurrentStep(0)
+    setProgress(2)
+    setElapsedSeconds(0)
+
+    const progressInterval = setInterval(() => {
+      elapsed += 200
+      const pct = Math.min((elapsed / TOTAL_MS) * 93, 93)
+      setProgress(pct)
+      setElapsedSeconds(Math.floor(elapsed / 1000))
+    }, 200)
+
+    const stepInterval = setInterval(() => {
+      stepIdx = Math.min(stepIdx + 1, LOADING_STEPS.length - 1)
+      setCurrentStep(stepIdx)
+    }, 3200)
 
     try {
       const res = await fetch('/api/generate', {
@@ -97,12 +137,17 @@ function DashboardContent() {
         caseStudy: data.caseStudy,
       })
       setTimeout(() => {
-        resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }, 100)
+        resultRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }, 200)
     } catch (err: any) {
       setError(err.message || 'Something went wrong.')
     } finally {
-      clearInterval(interval)
+      clearInterval(progressInterval)
+      clearInterval(stepInterval)
+      setProgress(100)
       setLoading(false)
     }
   }
@@ -257,20 +302,79 @@ function DashboardContent() {
                 }
               `}
             >
-              {loading ? loadingText : 'Write my case study →'}
+              {loading ? 'Generating...' : 'Write my case study →'}
             </button>
 
             {loading && (
-              <div className="flex justify-center">
-                <div className="flex gap-1">
-                  {[0, 1, 2].map(i => (
-                    <div
-                      key={i}
-                      className="w-1.5 h-1.5 rounded-full bg-amber-500"
-                      style={{
-                        animation: `bounce 1s ease-in-out ${i * 0.15}s infinite`
-                      }}
-                    />
+              <div className="mt-8 border border-white/10 bg-[#0d0d0d] rounded-2xl p-6 md:p-8">
+
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-white font-medium text-sm">
+                    {LOADING_STEPS[currentStep]?.label}...
+                  </p>
+                  <p className="text-gray-600 text-xs font-mono">
+                    {elapsedSeconds}s / ~18s
+                  </p>
+                </div>
+
+                <div className="w-full bg-[#111] rounded-full h-1 mb-2">
+                  <div
+                    className="h-1 rounded-full bg-amber-500 transition-all duration-200"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+
+                <p className="text-gray-600 text-xs mb-8">
+                  {LOADING_STEPS[currentStep]?.detail}
+                </p>
+
+                <div className="space-y-4">
+                  {LOADING_STEPS.map((step, idx) => (
+                    <div key={step.id} className="flex items-center gap-4">
+
+                      <div className={`
+                        w-8 h-8 rounded-lg flex items-center
+                        justify-center text-xs font-mono
+                        shrink-0 transition-all duration-300
+                        ${idx < currentStep
+                          ? 'bg-amber-500/20 text-amber-500 border border-amber-500/30'
+                          : idx === currentStep
+                          ? 'bg-amber-500 text-black'
+                          : 'bg-[#111] text-gray-700 border border-white/5'}
+                      `}>
+                        {idx < currentStep ? '✓' : step.icon}
+                      </div>
+
+                      <div className="flex-1">
+                        <p className={`text-sm font-medium transition-colors duration-300
+                          ${idx < currentStep
+                            ? 'text-gray-600 line-through'
+                            : idx === currentStep
+                            ? 'text-white'
+                            : 'text-gray-700'}`}>
+                          {step.label}
+                        </p>
+                        {idx === currentStep && (
+                          <p className="text-gray-600 text-xs mt-0.5">
+                            {step.detail}
+                          </p>
+                        )}
+                      </div>
+
+                      {idx === currentStep && (
+                        <div className="flex gap-1">
+                          {[0, 1, 2].map(i => (
+                            <div
+                              key={i}
+                              className="w-1 h-1 rounded-full bg-amber-500"
+                              style={{
+                                animation: `pulse 1s ease-in-out ${i * 0.2}s infinite`
+                              }}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
@@ -373,6 +477,10 @@ function DashboardContent() {
             @keyframes bounce {
               0%, 100% { transform: translateY(0); }
               50% { transform: translateY(-6px); }
+            }
+            @keyframes pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.3; }
             }
           `}</style>
         </div>
