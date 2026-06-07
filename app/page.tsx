@@ -67,14 +67,6 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-6">
             <a
-              href="/generate"
-              className="text-gray-500 text-sm
-                hover:text-gray-300 transition-colors
-                hidden md:block"
-            >
-              Already paid? Generate →
-            </a>
-            <a
               href={earlyBirdUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -119,7 +111,7 @@ export default function Home() {
             See how it works ↓
           </a>
           <p className="text-gray-600 text-sm">
-            One-time · No subscription · Price goes to $9 on Day 10
+            One-time payment. No subscription. No fluff.
           </p>
         </div>
       </section>
@@ -586,7 +578,7 @@ export default function Home() {
               <span className="text-white text-6xl font-bold">$7</span>
               <span className="text-gray-600 text-sm">USD</span>
             </div>
-            <p className="text-gray-600 text-sm mt-1 mb-6">One-time · Price goes to $9 on Day 10</p>
+            <p className="text-gray-600 text-sm mt-1 mb-6">One-time payment. No subscription.</p>
             <div className="border-t border-white/5 mb-6" />
             <div className="space-y-3">
               {[
@@ -623,7 +615,7 @@ export default function Home() {
               <span className="text-white text-6xl font-bold">$19</span>
               <span className="text-gray-600 text-sm">USD</span>
             </div>
-            <p className="text-gray-600 text-sm mt-1 mb-6">One-time · Price goes to $29 on Day 10</p>
+            <p className="text-gray-600 text-sm mt-1 mb-6">One-time payment. No subscription.</p>
             <div className="border-t border-white/5 mb-6" />
             <div className="space-y-3">
               {[
@@ -650,18 +642,12 @@ export default function Home() {
           </div>
         </div>
 
-        <p className="text-center mt-8 text-gray-600 text-sm">
-          Both prices increase permanently on Day 10. No exceptions. No extensions.
-        </p>
       </section>
 
       {/* URGENCY */}
       <div className="max-w-2xl mx-auto text-center py-10 px-6">
-        <p className="text-gray-600 text-sm mb-1">
-          Early access pricing ends soon.
-        </p>
-        <p className="text-gray-700 text-sm mb-6">
-          Price goes to $15 after that. No exceptions.
+        <p className="text-gray-500 text-sm mb-6">
+          Early access pricing. Get in before it goes up.
         </p>
         <a
           href="mailto:hi@trykoven.com"
@@ -669,7 +655,7 @@ export default function Home() {
             hover:text-gray-400 transition-colors
             underline underline-offset-4"
         >
-          Questions before buying? Email hi@trykoven.com →
+          Questions? Email hi@trykoven.com →
         </a>
       </div>
 
@@ -736,7 +722,7 @@ export default function Home() {
             $9
           </p>
           <p className="text-gray-600 text-xs mt-0.5">
-            one-time
+            no subscription
           </p>
         </div>
         <a
