@@ -66,7 +66,15 @@ export default function Home() {
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 ml-1 mb-1" />
           </div>
           <div className="flex items-center gap-6">
-<a
+            <a
+              href="/generate"
+              className="text-gray-500 text-sm
+                hover:text-gray-300 transition-colors
+                hidden md:block"
+            >
+              Already paid? Generate →
+            </a>
+            <a
               href={earlyBirdUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -92,8 +100,7 @@ export default function Home() {
         <p className="mt-8 max-w-2xl mx-auto text-gray-400 text-xl leading-relaxed">
           Paste your GitHub URL and build posts.
           Koven writes your case study in 5 minutes.
-          Not a template — built from what you
-          actually did.
+          Not a template — built from what you did.
         </p>
 
         <div className="mt-12 flex flex-col items-center gap-4">
@@ -103,7 +110,7 @@ export default function Home() {
             rel="noopener noreferrer"
             className="animate-glow bg-amber-500 hover:bg-amber-400 text-black font-bold px-10 py-4 rounded-xl text-lg transition-all duration-200"
           >
-            Get early access — $7
+            Get my case study — $9
           </a>
           <a
             href="#how-it-works"
@@ -601,7 +608,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="mt-8 block w-full text-center bg-amber-500 hover:bg-amber-400 text-black font-bold py-4 rounded-xl transition-all"
             >
-              Get early access — $7
+              Get my case study — $9
             </a>
           </div>
 
@@ -647,6 +654,24 @@ export default function Home() {
           Both prices increase permanently on Day 10. No exceptions. No extensions.
         </p>
       </section>
+
+      {/* URGENCY */}
+      <div className="max-w-2xl mx-auto text-center py-10 px-6">
+        <p className="text-gray-600 text-sm mb-1">
+          Early access pricing ends soon.
+        </p>
+        <p className="text-gray-700 text-sm mb-6">
+          Price goes to $15 after that. No exceptions.
+        </p>
+        <a
+          href="mailto:hi@trykoven.com"
+          className="text-gray-600 text-sm
+            hover:text-gray-400 transition-colors
+            underline underline-offset-4"
+        >
+          Questions before buying? Email hi@trykoven.com →
+        </a>
+      </div>
 
       {/* FAQ */}
       <section className="mt-32 px-4 md:px-6 max-w-2xl mx-auto">
@@ -700,6 +725,30 @@ export default function Home() {
           One-time payment. Under 5 minutes. 48-hour refund if it&apos;s not what you expected.
         </p>
       </section>
+
+      {/* MOBILE STICKY CTA */}
+      <div className="fixed bottom-0 left-0 right-0
+        md:hidden bg-[#0f0f0f]/95 backdrop-blur-sm
+        border-t border-white/10 px-4 py-3
+        flex items-center justify-between z-50">
+        <div>
+          <p className="text-white font-bold text-lg leading-none">
+            $9
+          </p>
+          <p className="text-gray-600 text-xs mt-0.5">
+            one-time
+          </p>
+        </div>
+        <a
+          href={process.env.NEXT_PUBLIC_POLAR_EARLY_BIRD_URL}
+          target="_blank"
+          className="bg-amber-500 hover:bg-amber-400
+            text-black font-bold px-6 py-2.5
+            rounded-xl text-sm transition-colors"
+        >
+          Get access →
+        </a>
+      </div>
 
       {/* FOOTER */}
       <footer className="border-t border-white/5 px-4 md:px-6 py-8 mt-16">
