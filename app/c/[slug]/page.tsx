@@ -3,22 +3,23 @@ import { notFound } from 'next/navigation'
 import { CopyButton } from '@/components/ui/copy-button'
 
 interface PageProps {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({
   params
 }: PageProps) {
+  const { slug } = await params
   const { data } = await supabase
     .from('case_studies')
     .select('title, one_liner, builder_handle')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single()
 
   if (!data) return { title: 'Case Study — Koven' }
 
   const ogImageUrl =
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/og/${params.slug}`
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/og/${slug}`
 
   return {
     title: `${data.title} — Case Study`,
@@ -45,10 +46,11 @@ export async function generateMetadata({
 export default async function CaseStudyPage({
   params
 }: PageProps) {
+  const { slug } = await params
   const { data, error } = await supabase
     .from('case_studies')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single()
 
   if (error || !data) notFound()
@@ -57,7 +59,7 @@ export default async function CaseStudyPage({
   const commitCount = rawData?.github?.commitCount
   const daysActive = rawData?.github?.daysActive
   const publicUrl =
-    `https://trykoven.com/c/${params.slug}`
+    `https://trykoven.com/c/${slug}`
 
   const shareText = encodeURIComponent(
     `Just built my ${data.title} case study with @trykoven 🔥\n\n${data.one_liner}\n\nFull story:`
@@ -103,7 +105,7 @@ export default async function CaseStudyPage({
           </a>
           <span className="text-gray-700
             text-xs font-mono hidden md:block">
-            trykoven.com/c/{params.slug}
+            trykoven.com/c/{slug}
           </span>
           <a
             href={`https://trykoven.com`}
@@ -311,7 +313,7 @@ export default async function CaseStudyPage({
             </p>
             <p className="text-gray-600 text-xs
               mt-1 font-mono">
-              trykoven.com/c/{params.slug}
+              trykoven.com/c/{slug}
             </p>
           </div>
           <div className="flex gap-3">
