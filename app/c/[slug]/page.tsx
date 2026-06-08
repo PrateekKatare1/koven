@@ -125,7 +125,7 @@ export default async function CaseStudyPage({
         <div className="mb-16 fade-up fade-up-1">
           <div className="flex items-start
             justify-between flex-wrap gap-6">
-            <div>
+            <div className="flex-1 min-w-0">
               <p className="text-gray-600 text-xs
                 tracking-widest uppercase mb-3">
                 Case Study
@@ -140,7 +140,7 @@ export default async function CaseStudyPage({
               </p>
             </div>
 
-            <div className="text-right shrink-0">
+            <div className="text-right shrink-0 min-w-[140px]">
               <p className="text-gray-600 text-xs mb-1">
                 Built by
               </p>
@@ -166,7 +166,7 @@ export default async function CaseStudyPage({
           </div>
 
           {/* Badges */}
-          <div className="flex flex-wrap gap-3 mt-6">
+          <div className="flex flex-wrap gap-2 mt-6">
             {commitCount && (
               <div className="flex items-center gap-2
                 bg-[#111] border border-white/5
@@ -206,7 +206,7 @@ export default async function CaseStudyPage({
 
         {/* 2-col content */}
         <div className="grid md:grid-cols-2
-          gap-12 mb-16">
+          gap-12 mb-16 items-start">
 
           <div className="space-y-10
             fade-up fade-up-3">
@@ -258,7 +258,7 @@ export default async function CaseStudyPage({
               {data.build_story}
             </p>
 
-            <p className="text-gray-600 text-xs
+            <p className="text-amber-500 text-xs
               tracking-widest uppercase mb-4
               font-medium">
               Technical Decisions
@@ -305,7 +305,7 @@ export default async function CaseStudyPage({
           items-center justify-between gap-4
           border border-white/5 rounded-xl p-6
           fade-up fade-up-6">
-          <div>
+          <div className="text-center sm:text-left">
             <p className="text-white font-medium
               text-sm">
               Share this case study
@@ -334,7 +334,7 @@ export default async function CaseStudyPage({
 
       {/* Footer */}
       <footer className="border-t border-white/5
-        py-8 mt-16">
+        py-10">
         <div className="max-w-4xl mx-auto
           px-6 text-center">
           <p className="text-gray-700 text-sm">
