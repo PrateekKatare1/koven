@@ -18,8 +18,7 @@ export async function generateMetadata({
 
   if (!data) return { title: 'Case Study — Koven' }
 
-  const ogImageUrl =
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/og/${slug}`
+  const ogImageUrl = `https://trykoven.com/api/og/${slug}`
 
   return {
     title: `${data.title} — Case Study`,
