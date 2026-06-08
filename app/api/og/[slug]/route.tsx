@@ -1,12 +1,14 @@
-import { ImageResponse } from '@vercel/og'
+import { ImageResponse } from 'next/og'
 import { createClient } from '@supabase/supabase-js'
 
 export const runtime = 'edge'
 
 export async function GET(
   req: Request,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
+  const { slug } = await params
+
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -15,12 +17,11 @@ export async function GET(
   const { data } = await supabase
     .from('case_studies')
     .select('title, one_liner, builder_handle, tech_stack')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .single()
 
   const title = data?.title ?? 'Case Study'
-  const oneLiner = data?.one_liner ??
-    'Generated with Koven'
+  const oneLiner = data?.one_liner ?? 'Generated with Koven'
   const handle = data?.builder_handle ?? '@builder'
   const stack = (data?.tech_stack ?? [])
     .slice(0, 4)
