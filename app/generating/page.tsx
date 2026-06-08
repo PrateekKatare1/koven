@@ -52,6 +52,11 @@ export default function GeneratingPage() {
 
     const form = JSON.parse(raw)
 
+    const urlParams = new URLSearchParams(
+      window.location.search
+    )
+    const sessionId = urlParams.get('session') || ''
+
     let stepIdx = 0
     let ms = 0
     const TOTAL = 19000
@@ -70,7 +75,7 @@ export default function GeneratingPage() {
     fetch('/api/generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
+      body: JSON.stringify({ ...form, sessionId }),
     })
       .then(res => res.json())
       .then(data => {

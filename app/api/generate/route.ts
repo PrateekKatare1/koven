@@ -9,6 +9,47 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
 
+    // Check payment via session OR email
+    const sessionId = body.sessionId
+    const email = body.email
+
+    if (!sessionId && !email) {
+      return NextResponse.json(
+        { error: 'Payment required. Visit trykoven.com to get access.' },
+        { status: 402 }
+      )
+    }
+
+    // Verify session if provided
+    if (sessionId) {
+      const { verifyCheckoutSession } =
+        await import('@/lib/polar')
+      const { paid } = await verifyCheckoutSession(sessionId)
+
+      if (!paid) {
+        return NextResponse.json(
+          { error: 'Payment not verified. Complete checkout at trykoven.com' },
+          { status: 402 }
+        )
+      }
+    }
+
+    // Verify email if provided
+    if (email && !sessionId) {
+      const { data } = await supabaseAdmin
+        .from('paid_users')
+        .select('email')
+        .eq('email', email.toLowerCase().trim())
+        .single()
+
+      if (!data) {
+        return NextResponse.json(
+          { error: 'No payment found for this email.' },
+          { status: 402 }
+        )
+      }
+    }
+
     const {
       githubUrl,
       xHandle,
