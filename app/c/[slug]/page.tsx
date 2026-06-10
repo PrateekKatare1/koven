@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabase'
 import { notFound } from 'next/navigation'
 import { CopyButton } from '@/components/ui/copy-button'
+import DownloadPDFButton from '@/components/DownloadPDFButton'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -118,7 +119,7 @@ export default async function CaseStudyPage({
         </div>
       </nav>
 
-      <div className="max-w-4xl mx-auto
+      <div id="case-study-content" className="max-w-4xl mx-auto
         px-6 py-16">
 
         {/* Header */}
@@ -301,7 +302,7 @@ export default async function CaseStudyPage({
         </div>
 
         {/* Share row */}
-        <div className="flex flex-col sm:flex-row
+        <div id="share-row" className="flex flex-col sm:flex-row
           items-center justify-between gap-4
           border border-white/5 rounded-xl p-6
           fade-up fade-up-6">
@@ -316,6 +317,21 @@ export default async function CaseStudyPage({
             </p>
           </div>
           <div className="flex gap-3">
+            <DownloadPDFButton
+                projectName={data.title}
+                title={data.title}
+                oneLiner={data.one_liner}
+                problem={data.problem}
+                solution={data.solution}
+                results={data.results}
+                howItGotBuilt={data.build_story}
+                technicalDecisions={data.technical_decisions ?? []}
+                builderHandle={data.builder_handle}
+                commitCount={rawData?.github?.commitCount}
+                daysActive={rawData?.github?.daysActive}
+                techStack={data.tech_stack ?? []}
+                slug={slug}
+              />
             <CopyButton url={publicUrl} />
             <a
               href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`}

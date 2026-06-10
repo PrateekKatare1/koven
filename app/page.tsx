@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { WaitlistForm } from '@/components/WaitlistForm'
 
 const styles = `
   @keyframes float-up {
@@ -740,6 +741,11 @@ export default function Home() {
         <p className="text-gray-600 text-sm mt-4">
           One-time payment. No subscription.
         </p>
+      </section>
+
+      {/* WAITLIST */}
+      <section className="px-4 md:px-6 pb-20 max-w-6xl mx-auto">
+        <WaitlistForm />
       </section>
 
       {/* MOBILE STICKY CTA */}
